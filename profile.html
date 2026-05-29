@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folahan Akinwumi profile page</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --gold: #f59e0b;
+            --gold-light: #fbbf24;
+            --gold-dark: #b45309;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+
+        /* Animated background mesh */
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(20, 20, 20, 1) 0%, #0a0a0a 100%);
+        }
+
+        .bg-mesh::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* 3D Scene */
+        .scene-3d {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(-3deg) translateZ(20px);
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .glass-gold {
+            background: rgba(245, 158, 11, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        /* Glow effects */
+        .glow-gold {
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.15), 0 0 60px rgba(245, 158, 11, 0.05);
+        }
+
+        .glow-gold-strong {
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.25), 0 0 80px rgba(245, 158, 11, 0.1);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Animated border glow */
+        .border-glow {
+            position: relative;
+        }
+
+        .border-glow::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(245,158,11,0.4), transparent, rgba(245,158,11,0.2));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .border-glow:hover::before {
+            opacity: 1;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.4), 0 0 60px rgba(245, 158, 11, 0.1); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-float-slow {
+            animation: float-slow 6s ease-in-out infinite;
+        }
+
+        .animate-pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .animate-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(245,158,11,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Circular icon style */
+        .tool-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(245,158,11,0.2), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .tool-icon:hover {
+            transform: translateY(-8px) scale(1.05);
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
+        }
+
+        .tool-icon:hover::before {
+            opacity: 1;
+        }
+
+        /* Avatar ring */
+        .avatar-ring {
+            position: relative;
+            padding: 4px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--gold), var(--gold-light), var(--gold-dark), var(--gold));
+        }
+
+        .avatar-ring::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--gold), transparent, var(--gold-light), transparent, var(--gold));
+            animation: spin-slow 8s linear infinite;
+            z-index: -1;
+        }
+
+        /* Skill card */
+        .skill-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px) rotateX(-5deg) translateZ(30px);
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 20px 60px rgba(245, 158, 11, 0.15);
+        }
+
+        /* Hobby card */
+        .hobby-card {
+            transition: all 0.4s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        /* Availability badge */
+        .avail-badge {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avail-badge::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            background-size: 200% 100%;
+            animation: shimmer 2s linear infinite;
+            z-index: -1;
+        }
+
+        /* Contact item */
+        .contact-item {
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(8px);
+        }
+
+        .contact-item:hover .contact-icon {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: rgba(245, 158, 11, 0.5);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Particle canvas */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--gold-dark), var(--gold));
+            border-radius: 4px;
+        }
+
+        /* Tilt effect wrapper */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+
+        .tilt-card .tilt-content {
+            transform: translateZ(40px);
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(245,158,11,0.3), transparent);
+        }
+
+        /* Typing cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: var(--gold);
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .card-3d:hover {
+                transform: rotateY(2deg) rotateX(-1deg) translateZ(10px);
+            }
+        }
+    </style>
+  <script data-arena-recording="true">(function(){
+"use strict";
+var SK="__arena_rec",RRWEB_CDN="https://cdn.jsdelivr.net/npm/rrweb@2.0.0-alpha.4/dist/rrweb.min.js";
+var MAX_RECORDING_MS=600000,MAX_RRWEB_EVENTS=30000,MAX_INTERACTIONS=5000,MAX_CURSOR_POINTS=10000,recStopped=false;
+var stored=null;try{var raw=sessionStorage.getItem(SK);if(raw)stored=JSON.parse(raw);}catch(ex){}
+var meta=stored?stored.m||null:null,rrwebEvents=stored?stored.r||[]:[],rrwebStarted=false,startTime=stored?stored.st||Date.now():Date.now();
+var interactions=stored?stored.i||[]:[],cursorPath=stored?stored.c||[]:[],lastCursorSample=0,lastScrollSample=0;
+var pageHeight=document.documentElement.scrollHeight;
+var viewport={width:window.innerWidth,height:window.innerHeight};
+function isCapped(){if(recStopped)return true;if(Date.now()-startTime>=MAX_RECORDING_MS){recStopped=true;return true;}return false;}
+function persist(){try{var d=JSON.stringify({r:rrwebEvents,i:interactions,c:cursorPath,m:meta,st:startTime});sessionStorage.setItem(SK,d);}catch(ex){rrwebEvents=rrwebEvents.slice(Math.floor(rrwebEvents.length/2));try{sessionStorage.setItem(SK,JSON.stringify({r:rrwebEvents,i:interactions,c:cursorPath,m:meta,st:startTime}));}catch(ex2){}}}
+setInterval(persist,5000);
+window.addEventListener("resize",function(){viewport={width:window.innerWidth,height:window.innerHeight};pageHeight=document.documentElement.scrollHeight;});
+document.addEventListener("click",function(e){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;var el=e.target;var tag=el.tagName?el.tagName.toLowerCase():"";var text=(el.textContent||"").trim().substring(0,80);var classes=el.className&&typeof el.className==="string"?el.className.substring(0,120):"";interactions.push({type:"click",t:Date.now()-startTime,x:Math.round(e.clientX),y:Math.round(e.clientY),element:{tag:tag,text:text,classes:classes}});},true);
+window.addEventListener("scroll",function(){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;var now=Date.now();if(now-lastScrollSample<200)return;lastScrollSample=now;var scrollY=Math.round(window.scrollY||window.pageYOffset||0);var depthPct=pageHeight>viewport.height?Math.min(100,Math.round(((scrollY+viewport.height)/pageHeight)*100)):100;interactions.push({type:"scroll",t:now-startTime,y:scrollY,depth_pct:depthPct});},{passive:true});
+document.addEventListener("mousemove",function(e){if(isCapped()||cursorPath.length>=MAX_CURSOR_POINTS)return;var now=Date.now();if(now-lastCursorSample<250)return;lastCursorSample=now;cursorPath.push([Math.round(e.clientX),Math.round(e.clientY),now-startTime]);},{passive:true});
+document.addEventListener("keydown",function(e){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;if(e.target&&(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA"))return;interactions.push({type:"keydown",t:Date.now()-startTime,key:e.key});},true);
+function buildAnalytics(){if(!meta)return null;var ph=document.documentElement.scrollHeight;var maxScroll=0,clickElements={},firstClick=null,firstScroll=null,totalDistance=0;for(var i=0;i<interactions.length;i++){var ev=interactions[i];if(ev.type==="scroll"){if(ev.depth_pct>maxScroll)maxScroll=ev.depth_pct;if(!firstScroll)firstScroll=ev.t;}if(ev.type==="click"){if(!firstClick)firstClick=ev.t;var key=ev.element.tag+":"+ev.element.text.substring(0,30);clickElements[key]=true;}}for(var j=1;j<cursorPath.length;j++){var dx=cursorPath[j][0]-cursorPath[j-1][0];var dy=cursorPath[j][1]-cursorPath[j-1][1];totalDistance+=Math.sqrt(dx*dx+dy*dy);}var duration=Date.now()-startTime;var clickHeatmap=[];for(var k=0;k<interactions.length;k++){if(interactions[k].type==="click")clickHeatmap.push([interactions[k].x,interactions[k].y]);}return{generation_id:meta.generationId,tournament_id:meta.tournamentId,started_at:new Date(startTime).toISOString(),ended_at:new Date().toISOString(),duration_ms:duration,viewport:viewport,page_height:ph,interactions:interactions,cursor_path:cursorPath,click_heatmap:clickHeatmap,summary:{total_clicks:clickHeatmap.length,total_scrolls:interactions.filter(function(e){return e.type==="scroll";}).length,max_scroll_depth_pct:maxScroll,unique_elements_clicked:Object.keys(clickElements).length,time_to_first_click_ms:firstClick,time_to_first_scroll_ms:firstScroll,cursor_distance_px:Math.round(totalDistance),active_time_ms:duration}};}
+function loadRrweb(){if(rrwebStarted)return;rrwebStarted=true;var s=document.createElement("script");s.src=RRWEB_CDN;s.onload=function(){var rec=(window.rrweb&&window.rrweb.record)||window.rrwebRecord;if(!rec)return;rec({emit:function(event){if(rrwebEvents.length>=MAX_RRWEB_EVENTS||isCapped())return;rrwebEvents.push(event);}});};s.onerror=function(){};document.head.appendChild(s);}
+window.addEventListener("message",function(e){if(!e.data||typeof e.data.type!=="string")return;if(e.data.type==="arena:init"){if(!meta)startTime=Date.now();meta={generationId:e.data.generationId||e.data.modelId,tournamentId:e.data.tournamentId};persist();loadRrweb();if(e.source)e.source.postMessage({type:"arena:init-ack",generationId:meta.generationId},"*");}if(e.data.type==="arena:flush"){var resp={type:"arena:recording-data",generationId:meta?meta.generationId:null,rrwebEvents:rrwebEvents,analytics:buildAnalytics()};try{sessionStorage.removeItem(SK);}catch(ex){}if(e.source)e.source.postMessage(resp,"*");}});
+loadRrweb();
+})();</script>
+  <script data-arena-views="true">(function(){var isTop=false;try{isTop=window.self===window.top;}catch(e){}if(!isTop)return;window.__ARENA_META={generationId:"kimi-k2.6",tournamentId:"5f61ca74-0ca8-4034-8a30-b78d587139f3"};var payload={tournamentId:"5f61ca74-0ca8-4034-8a30-b78d587139f3",modelId:"kimi-k2.6"};try{var r=document.referrer;if(r){var u=new URL(r);payload.referrerDomain=u.hostname;}}catch(e){}try{var vid=null;try{vid=localStorage.getItem('arena_vid');}catch(e){}if(!vid){vid=typeof crypto!=="undefined"&&crypto.randomUUID?crypto.randomUUID():(Date.now().toString(36)+Math.random().toString(36).slice(2)).slice(0,32);try{localStorage.setItem('arena_vid',vid);}catch(e){}}if(vid)payload.viewerId=vid;}catch(e){}try{fetch("https://www.designarena.ai/api/agon/page-views",{"method":"POST","headers":{"Content-Type":"application/json"},"body":JSON.stringify(payload),"keepalive":true});}catch(e){}})();</script>
+</head>
+<body class="min-h-screen">
+    <!-- Background -->
+    <div class="bg-mesh"></div>
+    <canvas id="particles"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 flex items-center justify-center text-black font-bold text-sm group-hover:scale-110 transition-transform">
+                        FA
+                    </div>
+                    <span class="font-display font-bold text-lg text-white group-hover:text-gold-400 transition-colors">Folahan Akinwumi</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="nav-link text-sm font-medium text-gray-300 hover:text-white active">Home</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-white">About</a>
+                    <a href="#skills" class="nav-link text-sm font-medium text-gray-300 hover:text-white">Skills</a>
+                    <a href="#tools" class="nav-link text-sm font-medium text-gray-300 hover:text-white">Tools</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-white">Contact</a>
+                </div>
+
+                <!-- CTA Button -->
+                <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold-600 to-gold-500 text-black font-semibold text-sm hover:shadow-lg hover:shadow-gold-500/25 transition-all hover:scale-105">
+                    <span>Let's Talk</span>
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="md:hidden w-10 h-10 flex items-center justify-center text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Scroll progress -->
+        <div class="h-0.5 bg-gray-800">
+            <div id="scrollProgress" class="h-full bg-gradient-to-r from-gold-600 to-gold-400 w-0 transition-all duration-100"></div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden">
+        <div class="flex flex-col items-center justify-center h-full gap-8">
+            <a href="#home" class="text-2xl font-display font-bold text-white hover:text-gold-400 transition-colors mobile-link">Home</a>
+            <a href="#about" class="text-2xl font-display font-bold text-white hover:text-gold-400 transition-colors mobile-link">About</a>
+            <a href="#skills" class="text-2xl font-display font-bold text-white hover:text-gold-400 transition-colors mobile-link">Skills</a>
+            <a href="#tools" class="text-2xl font-display font-bold text-white hover:text-gold-400 transition-colors mobile-link">Tools</a>
+            <a href="#contact" class="text-2xl font-display font-bold text-white hover:text-gold-400 transition-colors mobile-link">Contact</a>
+        </div>
+        <button id="closeMenu" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-white">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left Content -->
+                <div class="scene-3d order-2 lg:order-1">
+                    <div class="card-3d">
+                        <div class="glass rounded-3xl p-8 md:p-10 glow-gold border-glow">
+                            <div class="tilt-content">
+                                <!-- Availability Badge -->
+                                <div class="avail-badge inline-flex items-center gap-2 px-4 py-2 rounded-full glass-gold mb-6">
+                                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                                    <span class="text-xs font-semibold text-gold-400 uppercase tracking-wider ">Available for Work</span>
+                                </div>
+
+                                <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+                                    Folahan <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600 text-glow">Akinwumi</span>
+                                </h1>
+
+                                <p class="text-lg md:text-xl text-gray-400 mb-6 font-light">
+                                    <span id="typewriter" class="typing-cursor"></span>
+                                </p>
+
+                                <p class="text-gray-400 leading-relaxed mb-8 max-w-lg">
+                                    I create data-driven strategies that increase visibility on search engines and AI platforms. Every project is focused on measurable growth, strong branding, and long-term digital success.
+                                </p>
+
+                                <div class="flex flex-wrap gap-4">
+                                    <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-gold-600 to-gold-500 text-black font-semibold hover:shadow-xl hover:shadow-gold-500/30 transition-all hover:scale-105">
+                                        <span>Get in Touch</span>
+                                        <i class="fas fa-paper-plane text-sm"></i>
+                                    </a>
+                                    <a href="#about" class="inline-flex items-center gap-2 px-6 py-3 rounded-full glass text-white font-medium hover:border-gold-500/40 transition-all hover:scale-105">
+                                        <span>Learn More</span>
+                                        <i class="fas fa-arrow-down text-sm"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right - Avatar -->
+                <div class="order-1 lg:order-2 flex justify-center">
+                    <div class="scene-3d">
+                        <div class="card-3d animate-float">
+                            <div class="relative">
+                                <!-- Decorative rings -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-72 h-72 md:w-96 md:h-96 rounded-full border border-gold-500/20 animate-spin-slow"></div>
+                                </div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full border border-gold-500/10" style="animation: spin-slow 15s linear infinite reverse;"></div>
+                                </div>
+
+                                <!-- Avatar -->
+                                <div class="avatar-ring w-56 h-56 md:w-72 md:h-72 rounded-full p-1">
+                                    <div class="w-full h-full rounded-full overflow-hidden bg-gray-900 relative">
+                                        <img src="profile pic.png" alt="Folahan Akinwumi" class="w-full h-full object-cover object-top">
+                                        <!-- Verification badge -->
+                                        <div class="absolute bottom-2 right-2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-gold-500 flex items-center justify-center shadow-lg shadow-gold-500/40">
+                                            <i class="fas fa-check text-black text-sm md:text-base"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Floating badges -->
+                                <div class="absolute -top-4 -right-4 glass-gold rounded-xl px-3 py-2 animate-float-slow">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-chart-line text-gold-400 text-sm"></i>
+                                        <span class="text-xs font-semibold text-white">Front-end developer</span>
+                                    </div>
+                                </div>
+
+                                <div class="absolute -bottom-4 -left-4 glass-gold rounded-xl px-3 py-2 animate-float-slow" style="animation-delay: 1s;">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-robot text-gold-400 text-sm"></i>
+                                        <span class="text-xs font-semibold text-white">Back-end developer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+            <span class="text-xs text-gray-500 uppercase tracking-widest">Scroll</span>
+            <div class="w-6 h-10 rounded-full border-2 border-gray-600 flex justify-center pt-2">
+                <div class="w-1.5 h-3 rounded-full bg-gold-500 animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-gold-500 text-sm font-semibold uppercase tracking-widest">Introduction</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-3">About Me</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-600 to-gold-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left - Image -->
+                <div class="reveal scene-3d">
+                    <div class="card-3d relative">
+                        <div class="glass rounded-3xl overflow-hidden glow-gold">
+                            <img src="profile pic.png" alt="Folahan Akinwumi" class="w-full h-96 object-cover object-top">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-full bg-gold-500 flex items-center justify-center">
+                                        <i class="fas fa-quote-left text-black"></i>
+                                    </div>
+                                    <p class="text-white font-display font-semibold text-lg">Turning clicks into customers</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Decorative element -->
+                        <div class="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-3xl border border-gold-500/20"></div>
+                    </div>
+                </div>
+
+                <!-- Right - Content -->
+                <div class="reveal space-y-6">
+                    <div class="glass rounded-2xl p-6 md:p-8 border-glow">
+                        <h3 class="font-display text-2xl font-bold text-white mb-4">Hi, I'm <span class="text-gold-400">Folahan Akinwumi</span></h3>
+                        <p class="text-gray-400 leading-relaxed mb-4">
+                            I am a <strong class="text-white">Front-end developer, App developer, Full-stack website developer</strong> helping brands rank, get discovered, and convert traffic into revenue.
+                        </p>
+                        <p class="text-gray-400 leading-relaxed">
+                            With years of experience in the digital landscape, I specialize in creating comprehensive strategies that bridge the gap between search engines and AI platforms. My approach combines technical expertise with creative thinking to deliver results that matter.
+                        </p>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="glass rounded-xl p-4 text-center card-3d hover:border-gold-500/30 transition-all">
+                            <div class="text-2xl md:text-3xl font-display font-bold text-gold-400">50+</div>
+                            <div class="text-xs text-gray-500 mt-1">Projects</div>
+                        </div>
+                        <div class="glass rounded-xl p-4 text-center card-3d hover:border-gold-500/30 transition-all">
+                            <div class="text-2xl md:text-3xl font-display font-bold text-gold-400">5+</div>
+                            <div class="text-xs text-gray-500 mt-1">Years Exp.</div>
+                        </div>
+                        <div class="glass rounded-xl p-4 text-center card-3d hover:border-gold-500/30 transition-all">
+                            <div class="text-2xl md:text-3xl font-display font-bold text-gold-400">100%</div>
+                            <div class="text-xs text-gray-500 mt-1">Commitment</div>
+                        </div>
+                    </div>
+
+                    <!-- Availability -->
+                    <div class="glass-gold rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4 animate-pulse-glow">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
+                            <span class="font-semibold text-white">Available</span>
+                        </div>
+                        <div class="flex gap-3 text-sm">
+                            <span class="px-3 py-1 rounded-full glass text-gold-400 text-xs font-medium">Freelance</span>
+                            <span class="px-3 py-1 rounded-full glass text-gold-400 text-xs font-medium">Remote</span>
+                            <span class="px-3 py-1 rounded-full glass text-gold-400 text-xs font-medium">Contract</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-gold-500 text-sm font-semibold uppercase tracking-widest">Expertise</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-3">Technical Skills</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-600 to-gold-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 scene-3d">
+                <!-- SEO -->
+                <div class="reveal skill-card glass rounded-2xl p-8 glow-gold border-glow group">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-search text-2xl text-gold-400"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Search Engine Optimization</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Comprehensive SEO strategies including on-page optimization, technical audits, link building, and content strategy to drive organic traffic growth.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full glass text-xs text-gold-400">On-Page SEO</span>
+                        <span class="px-3 py-1 rounded-full glass text-xs text-gold-400">Technical SEO</span>
+                        <span class="px-3 py-1 rounded-full glass text-xs text-gold-400">Link Building</span>
+                    </div>
+                </div>
+
+                <!-- AEO -->
+                <div class="reveal skill-card glass rounded-2xl p-8 glow-gold border-glow group" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-robot text-2xl text-gold-400"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Answer Engine Optimization</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Optimizing content for AI-driven search and voice assistants. Structuring data to appear in featured snippets and AI-generated responses.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full glass text-xs text-gold-400">AI Search</span>
+                        <span class="px-3 py-1 rounded-full glass text-xs text-gold-400">Voice Search</span>
+                        <span class="px-3 py-1 rounded-full glass text-xs text-gold-400">Schema Markup</span>
+                    </div>
+                </div>
+
+                <!-- Digital Marketing -->
+                <div class="reveal skill-card glass rounded-2xl p-8 glow-gold border-glow group" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-bullhorn text-2xl text-gold-400"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Digital Marketing Strategy</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        End-to-end digital marketing campaigns that align with business goals. From content marketing to conversion optimization and analytics.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full glass text-xs text-gold-400">Content Strategy</span>
+                        <span class="px-3 py-1 rounded-full glass text-xs text-gold-400">CRO</span>
+                        <span class="px-3 py-1 rounded-full glass text-xs text-gold-400">Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-gold-500 text-sm font-semibold uppercase tracking-widest">Toolkit</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-3">Marketing & SEO Tools</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-600 to-gold-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="glass rounded-3xl p-8 md:p-12 glow-gold reveal">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                    <!-- Google Analytics -->
+                    <div class="flex flex-col items-center gap-4 group">
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-bar text-3xl text-gold-400"></i>
+                        </div>
+                        <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors text-center">Google Analytics</span>
+                    </div>
+
+                    <!-- Search Console -->
+                    <div class="flex flex-col items-center gap-4 group">
+                        <div class="tool-icon">
+                            <i class="fas fa-search text-3xl text-gold-400"></i>
+                        </div>
+                        <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors text-center">Search Console</span>
+                    </div>
+
+                    <!-- Ahrefs/SEMrush -->
+                    <div class="flex flex-col items-center gap-4 group">
+                        <div class="tool-icon">
+                            <i class="fas fa-layer-group text-3xl text-gold-400"></i>
+                        </div>
+                        <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors text-center">Ahrefs / SEMrush</span>
+                    </div>
+
+                    <!-- Screaming Frog -->
+                    <div class="flex flex-col items-center gap-4 group">
+                        <div class="tool-icon">
+                            <i class="fas fa-frog text-3xl text-gold-400"></i>
+                        </div>
+                        <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors text-center">Screaming Frog</span>
+                    </div>
+
+                    <!-- WordPress/Webflow -->
+                    <div class="flex flex-col items-center gap-4 group">
+                        <div class="tool-icon">
+                            <i class="fas fa-wordpress text-3xl text-gold-400"></i>
+                        </div>
+                        <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors text-center">WordPress / Webflow</span>
+                    </div>
+                </div>
+
+                <!-- Additional tools row -->
+                <div class="mt-10 pt-8 border-t border-white/5">
+                    <p class="text-center text-gray-500 text-sm mb-6">Also proficient with</p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <span class="px-4 py-2 rounded-full glass text-sm text-gray-300 hover:text-gold-400 hover:border-gold-500/30 transition-all cursor-default">Google Tag Manager</span>
+                        <span class="px-4 py-2 rounded-full glass text-sm text-gray-300 hover:text-gold-400 hover:border-gold-500/30 transition-all cursor-default">Looker Studio</span>
+                        <span class="px-4 py-2 rounded-full glass text-sm text-gray-300 hover:text-gold-400 hover:border-gold-500/30 transition-all cursor-default">Moz</span>
+                        <span class="px-4 py-2 rounded-full glass text-sm text-gray-300 hover:text-gold-400 hover:border-gold-500/30 transition-all cursor-default">Surfer SEO</span>
+                        <span class="px-4 py-2 rounded-full glass text-sm text-gray-300 hover:text-gold-400 hover:border-gold-500/30 transition-all cursor-default">ChatGPT</span>
+                        <span class="px-4 py-2 rounded-full glass text-sm text-gray-300 hover:text-gold-400 hover:border-gold-500/30 transition-all cursor-default">Claude</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Hobbies Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-gold-500 text-sm font-semibold uppercase tracking-widest">Beyond Work</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-3">Interests</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-600 to-gold-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="reveal hobby-card glass rounded-2xl p-6 flex items-center gap-4 glow-gold">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-flask text-xl text-gold-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-white">Research & Analytics</h4>
+                        <p class="text-gray-500 text-sm mt-1">Data-driven decision making</p>
+                    </div>
+                </div>
+
+                <div class="reveal hobby-card glass rounded-2xl p-6 flex items-center gap-4 glow-gold" style="transition-delay: 0.1s;">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-microchip text-xl text-gold-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-white">Tech & AI</h4>
+                        <p class="text-gray-500 text-sm mt-1">Exploring emerging technologies</p>
+                    </div>
+                </div>
+
+                <div class="reveal hobby-card glass rounded-2xl p-6 flex items-center gap-4 glow-gold" style="transition-delay: 0.2s;">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-pen-fancy text-xl text-gold-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-white">Content Creation</h4>
+                        <p class="text-gray-500 text-sm mt-1">Crafting compelling narratives</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-gold-500 text-sm font-semibold uppercase tracking-widest">Get in Touch</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-3">Contact</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-gold-600 to-gold-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="reveal space-y-6">
+                    <div class="glass rounded-2xl p-8 glow-gold">
+                        <h3 class="font-display text-2xl font-bold text-white mb-6">Let's Connect</h3>
+                        <p class="text-gray-400 mb-8">
+                            Ready to take your digital presence to the next level? I'm here to help you dominate search results and turn clicks into customers.
+                        </p>
+
+                        <div class="space-y-4">
+                            <div class="contact-item flex items-center gap-4 p-4 rounded-xl glass cursor-pointer">
+                                <div class="contact-icon w-12 h-12 rounded-full glass-gold flex items-center justify-center transition-all">
+                                    <i class="fas fa-envelope text-gold-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider">Email</p>
+                                    <p class="text-white font-medium">folahanakinwumi@email.com</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item flex items-center gap-4 p-4 rounded-xl glass cursor-pointer">
+                                <div class="contact-icon w-12 h-12 rounded-full glass-gold flex items-center justify-center transition-all">
+                                    <i class="fas fa-phone text-gold-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider">Phone</p>
+                                    <p class="text-white font-medium">+234 814  379  4903</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item flex items-center gap-4 p-4 rounded-xl glass cursor-pointer">
+                                <div class="contact-icon w-12 h-12 rounded-full glass-gold flex items-center justify-center transition-all">
+                                    <i class="fas fa-map-marker-alt text-gold-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider">Location</p>
+                                    <p class="text-white font-medium">Nigeria (Remote Worldwide)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="mt-8 pt-6 border-t border-white/5">
+                            <p class="text-xs text-gray-500 uppercase tracking-wider mb-4">Follow Me</p>
+                            <div class="flex gap-3">
+                                <a href="#" class="w-11 h-11 rounded-full glass flex items-center justify-center text-gray-400 hover:text-gold-400 hover:border-gold-500/40 transition-all hover:scale-110">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-11 h-11 rounded-full glass flex items-center justify-center text-gray-400 hover:text-gold-400 hover:border-gold-500/40 transition-all hover:scale-110">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-11 h-11 rounded-full glass flex items-center justify-center text-gray-400 hover:text-gold-400 hover:border-gold-500/40 transition-all hover:scale-110">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-11 h-11 rounded-full glass flex items-center justify-center text-gray-400 hover:text-gold-400 hover:border-gold-500/40 transition-all hover:scale-110">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="reveal scene-3d">
+                    <div class="card-3d glass rounded-2xl p-8 glow-gold border-glow">
+                        <h3 class="font-display text-2xl font-bold text-white mb-6">Send a Message</h3>
+                        <form id="contactForm" class="space-y-5">
+                            <div class="grid md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">Name</label>
+                                    <input type="text" placeholder="Your name" class="w-full px-4 py-3 rounded-xl glass bg-transparent text-white placeholder-gray-600 focus:outline-none focus:border-gold-500/50 transition-colors border border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">Email</label>
+                                    <input type="email" placeholder="your@email.com" class="w-full px-4 py-3 rounded-xl glass bg-transparent text-white placeholder-gray-600 focus:outline-none focus:border-gold-500/50 transition-colors border border-transparent">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">Subject</label>
+                                <input type="text" placeholder="Project inquiry" class="w-full px-4 py-3 rounded-xl glass bg-transparent text-white placeholder-gray-600 focus:outline-none focus:border-gold-500/50 transition-colors border border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 uppercase tracking-wider mb-2">Message</label>
+                                <textarea rows="4" placeholder="Tell me about your project..." class="w-full px-4 py-3 rounded-xl glass bg-transparent text-white placeholder-gray-600 focus:outline-none focus:border-gold-500/50 transition-colors border border-transparent resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-gold-600 to-gold-500 text-black font-bold hover:shadow-xl hover:shadow-gold-500/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-gold-500 to-gold-700 flex items-center justify-center text-black font-bold mx-auto mb-4">
+                    FA
+                </div>
+                <p class="text-gray-400 leading-relaxed mb-6">
+                    I help brands dominate search results, increase visibility, and turn clicks into customers. Let's build your growth strategy.
+                </p>
+                <div class="flex justify-center gap-6 mb-8">
+                    <a href="#home" class="text-gray-500 hover:text-gold-400 transition-colors text-sm">Home</a>
+                    <a href="#about" class="text-gray-500 hover:text-gold-400 transition-colors text-sm">About</a>
+                    <a href="#skills" class="text-gray-500 hover:text-gold-400 transition-colors text-sm">Skills</a>
+                    <a href="#tools" class="text-gray-500 hover:text-gold-400 transition-colors text-sm">Tools</a>
+                    <a href="#contact" class="text-gray-500 hover:text-gold-400 transition-colors text-sm">Contact</a>
+                </div>
+                <div class="section-divider mb-6"></div>
+                <p class="text-gray-600 text-sm">
+                    &copy; 2025 folahan Akinwumi. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typewriter effect
+        const typewriterText = "Full-stack developer | App developer | Wordpress";
+        const typewriterElement = document.getElementById('typewriter');
+        let typeIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const current = typewriterText.substring(0, typeIndex);
+            typewriterElement.textContent = current;
+
+            if (!isDeleting && typeIndex < typewriterText.length) {
+                typeIndex++;
+                setTimeout(typeWriter, 80);
+            } else if (isDeleting && typeIndex > 0) {
+                typeIndex--;
+                setTimeout(typeWriter, 40);
+            } else {
+                isDeleting = !isDeleting;
+                setTimeout(typeWriter, isDeleting ? 2000 : 500);
+            }
+        }
+        typeWriter();
+
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+
+            // Navbar background
+            const navbar = document.getElementById('navbar');
+            if (scrollTop > 50) {
+                navbar.classList.add('bg-black/80', 'backdrop-blur-xl');
+            } else {
+                navbar.classList.remove('bg-black/80', 'backdrop-blur-xl');
+            }
+        });
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        // Scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Active nav link
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // 3D Tilt effect for cards
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        });
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span>Message Sent!</span> <i class="fas fa-check"></i>';
+            btn.classList.add('bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.remove('bg-green-600');
+                e.target.reset();
+            }, 3000);
+        });
+
+        // Particle system
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const particleCount = 60;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(245, 158, 11, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((particle, i) => {
+                particle.update();
+                particle.draw();
+
+                // Connect nearby particles
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[j].x - particle.x;
+                    const dy = particles[j].y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(particle.x, particle.y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(245, 158, 11, ${0.1 * (1 - distance / 150)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
